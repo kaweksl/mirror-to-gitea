@@ -35,8 +35,8 @@ function isAlreadyMirroredOnGitea(repository, gitea, giteaUser) {
     .catch(() => false);
 }
 
-function mirrorOnGitea(repository, gitea, giteaUser) {
-  request.post(`${gitea.url}/api/v1/repos/migrate`)
+async function mirrorOnGitea(repository, gitea, giteaUser) {
+  await request.post(`${gitea.url}/api/v1/repos/migrate`)
     .query(`access_token=${gitea.token}`)
     .send({
       clone_addr: repository.url,
